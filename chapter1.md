@@ -48,4 +48,44 @@
     [self.window makeKeyAndVisible];
 
 ```
+##第三节课
+ - 把TabBarController,UIViewController换成文件形式初始化
+ 
+ ![](/assets/Snip20170911_8.png)
+ 
+ - 实现标签如图所示
+ 
+ ![](/assets/Snip20170911_7.png)
+ 
+ - 创建addChildWithTitle: image方法，并实例化相应的类，实现抽取重复的代码
 
+
+
+```objectivec
+     //实例化四个标签
+    FXHomeViewController *homeviewC=(FXHomeViewController *)[self addChildWithTitle:@"首页" image:@"tabbar_home"];
+    FXMessageViewController *messageViewC=(FXMessageViewController*)[self addChildWithTitle:@"消息" image:@"tabbar_message_center_selected"];
+    FXProfileViewController *profileviewC=(FXProfileViewController *)[self addChildWithTitle:@"我" image:@"tabbar_profile_selected"];
+    FXDiscoverViewController *discoverViewC=(FXDiscoverViewController *)[self addChildWithTitle:@"发现" image:@"tabbar_discover_selected"];
+    
+    
+/**
+ <#Description#>
+ @param title 标题
+ @param image 图片名称
+ @return return childVC (UIViewController)
+ */
+-(UIViewController *)addChildWithTitle:(NSString *)title image:(NSString*)image
+{
+    //实例化
+    UIViewController *childVC=[[UIViewController alloc] init];
+    //指定背景颜色
+    childVC.view.backgroundColor=[UIColor blueColor];
+    //设置Item标题
+    childVC.tabBarItem.title=title;
+    //设置Item图片
+    childVC.tabBarItem.image=[UIImage imageNamed:image];
+    return childVC;
+}
+```
+ 
