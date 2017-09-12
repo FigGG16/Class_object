@@ -175,6 +175,10 @@
  ![](/assets/Snip20170912_2.png)
  - 把继承UIViewController的类改成继承UITableViewController,
  
+```objectivec
+@interface FXMessageViewController : UITableViewController
+```
+ 
  - 然后在FXMessageViewController.m代码实现 
  
  
