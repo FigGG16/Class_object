@@ -90,9 +90,9 @@
 ```
 ##第四节课(优化)
  - 类型强制转换耗费内存，效率低
- 用传递控制器的方式实例化
+ 用传递控制器的方式配置其他参数
  
-```objectiveC
+```objectivec
 /**
  <#Description#>
 
@@ -101,6 +101,14 @@
  @param image 图片名称
  */
 -(void)addChildWithVC:(UIViewController *)VC Title:(NSString *)title image:(NSString*)image
+{
+    //指定背景颜色
+    VC.view.backgroundColor=[UIColor blueColor];
+    //设置Item标题
+    VC.tabBarItem.title=title;
+    //设置Item图片
+    VC.tabBarItem.image=[UIImage imageNamed:image];
+}
 ```
 
 
