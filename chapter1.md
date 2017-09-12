@@ -169,7 +169,41 @@
  
  - 继承UINavigationControllers，替换成自己的类
  
-
+##第六节课
+ - 分析：
+ 
+ ![](/assets/Snip20170912_2.png)
+ - 把继承UIViewController的类改成继承UITableViewController,
+ 
+ - 然后在FXMessageViewController.m代码实现 
+ 
+ 
+```objectivec
+//返回行数
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 20;
+}
+//设置cell
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    /**第一步设置cell的标识ID*/
+    static NSString *ID=@"cell";
+    /**去缓存池中查找有没有可利用的cell*/
+     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    /**没有的话则新建一个，并制定样式*/
+    if(cell==nil)
+    {   //实例化cell
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+    }
+    //获取行数
+    NSString *str=[NSString stringWithFormat:@"text%ld",indexPath.row];
+    //赋值给单元格
+    cell.textLabel.text=str;
+    return cell;
+}
+ 
+```
 
 
 
