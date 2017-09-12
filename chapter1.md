@@ -112,5 +112,20 @@
 ```
 
 - 设置选中图片和颜色
+当我们想改变标签的图片颜色和文本颜色
+
+```objectivec
+  //渲染选中图片
+ VC.tabBarItem.selectedImage=[[UIImage imageNamed:seletedImag] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+ 
+/**文本颜色的设置*/
+    //创建一个字典
+    NSMutableDictionary *titleAttri = [NSMutableDictionary dictionary];
+    //KVO修改颜色
+    titleAttri[NSForegroundColorAttributeName] = [UIColor orangeColor];
+    //设置文本颜色
+    [VC.tabBarItem setTitleTextAttributes:titleAttri forState:UIControlStateSelected];
+```
+
 
 
