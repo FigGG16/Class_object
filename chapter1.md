@@ -126,6 +126,50 @@
     //设置文本颜色
     [VC.tabBarItem setTitleTextAttributes:titleAttri forState:UIControlStateSelected];
 ```
+##第五节课(优化并添加导航控制器)
+  - 分析框架结构：
+ ![](/assets/Snip20170912_1.png)
+
+
+ - 优化
+ 首先在AppDelegate.h文件添加属性
+```
+@property(strong,nonatomic) FXTaBarController *taBer;
+```
+实例化，并更新addChildWithVC:方法
+
+```objectivec
+-(void)addChildWithVC:(UIViewController *)VC Title:(NSString *)title image:(NSString*)image seletedImage:(NSString *)seletedImag
+{
+    UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:VC];
+    //指定背景颜色
+    VC.view.backgroundColor=[UIColor yellowColor];
+    
+    //设置navigationItem标题
+    VC.navigationItem.title=title;
+    //设置Item标题
+    VC.tabBarItem.title=title;
+    //设置Item图片
+    VC.tabBarItem.image=[UIImage imageNamed:image];
+    //创建一个字典
+    NSMutableDictionary *titleAttri = [NSMutableDictionary dictionary];
+    //KVO修改颜色
+    titleAttri[NSForegroundColorAttributeName] = [UIColor orangeColor];
+    //设置文本颜色
+    [VC.tabBarItem setTitleTextAttributes:titleAttri forState:UIControlStateSelected];
+    //渲染选中图片
+    VC.tabBarItem.selectedImage=[[UIImage imageNamed:seletedImag] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    [self.taBer addChildViewController:nav];
+}
+```
+
+ - 最后在Tabar的实现文件里面添加ViewController
+ 
+ - 继承UINavigationControllers，替换成自己的类
+ 
+
+
 
 
 
