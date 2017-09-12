@@ -88,4 +88,19 @@
     return childVC;
 }
 ```
+##第四节课(优化)
+ - 类型强制转换耗费内存，效率低
+ 用传递控制器的方式实例化
  
+```objectiveC
+/**
+ <#Description#>
+
+ @param VC UIViewController
+ @param title 标题
+ @param image 图片名称
+ */
+-(void)addChildWithVC:(UIViewController *)VC Title:(NSString *)title image:(NSString*)image
+```
+
+
