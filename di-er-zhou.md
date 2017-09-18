@@ -103,11 +103,35 @@
     return item;
 }
 
+ - 以上都是在相应的类里viewController_里实现，代码重复。
+  在每次push时调用初始化导航栏按钮，
+  1. 在NavigationController文件重写push方法，并把之前的方法移到导航
+  2. 去掉首页的导航按钮
 
 
+```
+-(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    //初始化父类方法
+    [super pushViewController:viewController animated:animated];
+    
+    //过滤掉首页的导航按钮
+    if(self.viewControllers.count>1)
+    {
 
- 
- ```
+    //自定义左边按钮
+    viewController.navigationItem.leftBarButtonItem=[self addItemImage:@"navigationbar_back_withtext" selectImage:@"navigationbar_back_withtext_highlighted" action:@selector(back)];
+    
+    //自定义右边按钮
+    viewController.navigationItem.rightBarButtonItem=[self addItemImage:@"navigationbar_more" selectImage:@"navigationbar_more_highlighted" action:@selector(more)];
+    
+    }
+
+}
+
+```
+
+
  
  
  
