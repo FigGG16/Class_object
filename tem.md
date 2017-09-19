@@ -29,3 +29,33 @@
  效果图：
  
  ![](/assets/Snip20170919_14.png)
+ 
+ -添加不能点击状态
+ 
+ 
+ ```
+ - (void)viewDidLoad {
+    [super viewDidLoad];
+    ...
+    
+    //不可点击时
+    NSMutableDictionary *disableDic=[NSMutableDictionary dictionary];
+    //根据键值更改颜色
+    disableDic[NSForegroundColorAttributeName] = [UIColor grayColor];
+    
+    //没有选中状态的颜色
+     [item setTitleTextAttributes:disableDic forState:UIControlStateDisabled];
+}
+ ```
+ 并且在相应的类添加
+ ```
+ //关闭导航控制器的选中状态
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationItem.rightBarButtonItem.enabled=NO;
+}
+ ```
+ 
+ 
+ 
