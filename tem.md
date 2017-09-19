@@ -22,7 +22,7 @@
  - 解决分类中调用点击事件报错
  
  应该添加Target参数，明确button是什么类调用的
- ```
+ ```objectivec
  +(UIBarButtonItem *)addItemTarget:(id)target Image:(NSString *)image selectImage:(NSString *)selImage action:(SEL)action
  {
  ...
