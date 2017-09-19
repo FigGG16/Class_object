@@ -141,4 +141,19 @@
  
  ![](/assets/Snip20170919_8.png)
  
- 
+##在Home标签添加导航
+![](/assets/Snip20170919_9.png)
+
+代码：把之前的copy上来 
+```
+- (void)viewDidLoad {
+    [super viewDidLoad];
+//    //自定义左边按钮
+    self.navigationItem.leftBarButtonItem=[self addItemImage:@"navigationbar_friendsearch" selectImage:@"navigationbar_friendsearch_highlighted" action:@selector(friendSearch)];
+    
+    //自定义右边按钮
+    self.navigationItem.rightBarButtonItem=[self addItemImage:@"navigationbar_pop" selectImage:@"navigationbar_pop_highlighted" action:@selector(pop)];
+    
+}
+```
+
