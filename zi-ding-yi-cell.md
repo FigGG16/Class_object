@@ -1,6 +1,6 @@
-##步骤
-1.新建继承文件继承UITableViewCell
-2.声明需要自定义的属性
+
+##新建继承文件继承UITableViewCell
+##声明需要自定义的属性
 
 ```objectivec
 //图片
@@ -17,7 +17,7 @@
 ```
 
 
-3.重写方法cell的初始化方法
+##重写方法cell的初始化方法
 
 ```objectivec
 //重写或覆盖初始化方法
@@ -48,7 +48,7 @@
     return self;
 }
 ```
-4.进行布局
+##进行布局
 
 
 ```objectivec
