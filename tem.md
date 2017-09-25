@@ -5,7 +5,8 @@
  >结构：UITextFile继承UIControl。    作用：只能输入一行，不可滚动。
  >区别：与Label相比  TextView和TextFile多了一个键盘设置，各自有一个委托协议。
  
-- 封装一个继承UITextFile的类 自定义搜索框
+-自定义搜索框
+封装一个继承UITextFile的类 
 
 ![](/assets/Snip20170925_3.png)
 
