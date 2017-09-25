@@ -231,6 +231,8 @@ testDic[NSForegroundColorAttributeName] = [UIColor orangeColor];
 
 -添加不能点击状态
 
+![](/assets/Snip20170925_1.png)
+
 ```
 - (void)viewDidLoad {
 [super viewDidLoad];
