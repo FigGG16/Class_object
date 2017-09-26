@@ -132,6 +132,22 @@
 ...
 }
 ```
+- 添加蒙版
+
+```objectivec 
+-(void)titleButtonClick
+{
+...
+    //添加蒙版
+    UIView *cover=[[UIView alloc]initWithFrame:window.bounds];
+    //背景透明
+    cover.backgroundColor=[UIColor clearColor];
+    //添加子控件
+    [cover addSubview:dropdownView];
+    //添加到Window
+    [window addSubview:cover];
+}
+```
 
 
 
