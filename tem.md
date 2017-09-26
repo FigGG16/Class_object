@@ -108,7 +108,35 @@
 }
 ```
  - 解决dropdownView随cell滚动而滚动
- 
+
+
+```objectivec
+-(void)titleButtonClick
+{
+ ...
+     //获取window窗口
+    UIWindow *window=[UIApplication sharedApplication].keyWindow;
+    //添加到Window
+    [window addSubview:dropdownView];
+}
+```
+- 解决键盘覆盖下拉框
+
+
+```objectivec 
+-(void)titleButtonClick
+{
+...
+    //获取window数组，再取出最后一个数组对象(window)
+    UIWindow *window=[[UIApplication sharedApplication].windows lastObject];
+...
+}
+```
+
+
+
+
+
  
 
 
