@@ -149,6 +149,102 @@
 }
 ```
 
+- 把dropdownView类型替换成UIView,并实现封装
+新建继承UIView文件,
+
+
+```objectivec
+//FXDropdownView----------.h文件------------
+
+//下拉菜单属性
+@property(nonatomic,strong)UIView * dropView;
+////下拉内容属性
+@property(nonatomic,strong)UIView * content;
+
++(instancetype)menu;
+
+-(void)show;
+
+
+//FXDropdownView----------.m文件------------
+-(instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if(self){
+        //实例化View
+        UIView *dropdownView=[[UIView alloc] init];
+        
+        //背景颜色
+        dropdownView.backgroundColor=[UIColor whiteColor];
+        
+        //尺寸
+        dropdownView.frame=CGRectMake(0, 64, 375, 300);
+        
+        //强引用
+        _dropView=dropdownView;
+        
+        [self addSubview:dropdownView];
+    }
+    return self;
+}
+
+//返回一个UIView对象
++(instancetype)menu
+{
+    return [[self alloc] init];
+}
+
+//显示下拉菜单
+-(void)show
+{
+    //获取window数组，再取出最后一个数组对象(window)
+    UIWindow *window=[[UIApplication sharedApplication].windows lastObject];
+    
+    [window addSubview:self];
+    
+    //设置尺寸
+    self.frame=window.bounds;
+}
+//重写setContent的Set方法，接受外界传入的控件，并显示到下拉菜单
+-(void)setContent:(UIView *)content{
+   
+    _content=content;
+    [self.dropView addSubview:_content];
+
+}
+//重写dropView的get方法，用来加载外界传入的控件
+-(UIView *)dropView{
+  
+    if(_dropView == nil){
+    
+        _dropView = [[UIView alloc] init];
+    }
+    return _dropView;
+}
+
+
+
+
+//FXHomeViewController-------.m
+
+-(void)titleButtonClick
+{
+    //实例化button
+    UIButton *addButton=[UIButton buttonWithType:UIButtonTypeContactAdd];
+    
+    //设置Frame
+    addButton.frame=CGRectMake(30, 40, addButton.frame.size.width, addButton.frame.size.height);
+    //实例化
+    FXDropdownView *dropView=[FXDropdownView menu];
+    
+    //添加控件
+    dropView.content=addButton;
+
+    //显示
+    [dropView show];
+}
+```
+
 
 
 
