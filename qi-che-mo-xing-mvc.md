@@ -206,10 +206,74 @@ _commentFX.frame=CGRectMake(_textFX.frame.size.width-20, self.contentView.frame.
 ```objectivec
 //侧栏检索
 -(NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView
-{
+{            //title与plist文件中一致
             return [self.model_arr valueForKey:@"title"];
 }
 ```
+
+##难点四
+纯代码添加搜索栏<br>
+![](/assets/Snip20170928_5.png)<BR>
+![](/assets/Snip20170928_6.png)<BR>
+
+>思路：
+>1.使用的是UISearchBar,遵守代理协议，设置代理
+>2.使用tableHeaderView 摆放搜索栏的位置
+>3.定义数组属性searchArray，存放搜索到的模型对象
+>4.实现搜索协议-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+>5.得到数据及时更新
+>6.根据 searchBar.text.length==0 语句判断是否为搜索状态，返回相应的行数，组数，cell,和侧边栏
+
+
+- 代码
+
+
+```objectivec
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    //背景颜色
+    self.view.backgroundColor=[UIColor redColor];
+    //指定cell的高度
+    self.tableView.rowHeight=80;
+    //实例化searchBar
+    UISearchBar *searchBar=[[UISearchBar alloc] init];
+    //设置尺寸
+    searchBar.frame=CGRectMake(0, 0, 375, 40);
+    //遵守代理
+    searchBar.delegate=self;
+    //赋值给tableHeader
+    self.tableView.tableHeaderView=searchBar;
+    //属性调用
+    _searchBar=searchBar;
+}
+
+//实现协议(searchBar)
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    //临时搜索数组
+    NSMutableArray  *tempCarSearch=[NSMutableArray array];
+    //遍历取出要搜索的汽车
+    for(FXCarTitle *carTitle in self.model_arr)
+    {
+        for(FXCarModel *model in carTitle.cars)
+        {
+           //把文本转成大写，进行比较是否包含搜索的字符  ，Unix区分大小写
+           if([   [model.name uppercaseString]   containsString:   [searchText uppercaseString]   ])
+           {
+               //加入数组
+               [tempCarSearch addObject:model];
+           }
+        }
+    }
+    //属性引用
+    _searchArray=tempCarSearch;
+    //更新数据
+    [self.tableView reloadData];
+}
+
+```
+
 
 
 
