@@ -194,6 +194,23 @@ _titleLabelFX.frame=CGRectMake(40, self.contentView.frame.size.height-30, 150, 2
 _commentFX.frame=CGRectMake(_textFX.frame.size.width-20, self.contentView.frame.size.height-30, 50, 20);
 }
 ```
+##难点三
+ 设置分层索引<BR/>
+ ![](/assets/Snip20170928_4.png)
+ 
+ >思路
+ >plist文件中必须给出对应的组数字符，如难点一图片所示
+ >有对应的数据源方法设置
+ 
+
+```objectivec
+//侧栏检索
+-(NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+            return [self.model_arr valueForKey:@"title"];
+}
+```
+
 
 
 
