@@ -116,7 +116,7 @@
  ![](/assets/Snip20170928_2.png)
 
  >思路：
- >1.上图中分析有四个子控件，声明四个子空间
+ >1.上图中分析有四个子控件，声明四个子控件
  >2.重写或覆盖初始化方法 -(instancetype)initWithStyle:(UITableViewCellStyle)style 
  >3.在 -(void)layoutSubviews 方法给添加的子控件进行布局
 
@@ -220,7 +220,7 @@ _commentFX.frame=CGRectMake(_textFX.frame.size.width-20, self.contentView.frame.
 >1.使用的是UISearchBar,遵守代理协议，设置代理
 >2.使用tableHeaderView 摆放搜索栏的位置
 >3.定义数组属性searchArray，存放搜索到的模型对象
->4.实现搜索协议-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+>4.实现搜索协议-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText 监控搜索框中的值
 >5.得到数据及时更新
 >6.根据 searchBar.text.length==0 语句判断是否为搜索状态，返回相应的行数，组数，cell,和侧边栏
 
