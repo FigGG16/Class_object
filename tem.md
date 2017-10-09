@@ -245,6 +245,16 @@
 }
 ```
 
+ - 点击cell移除下拉菜单
+
+
+```
+//当触摸控制器view时调用
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self removeFromSuperview];
+}
+```
 
 
 
