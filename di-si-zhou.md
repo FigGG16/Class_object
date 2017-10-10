@@ -178,11 +178,13 @@ VC.view.backgroundColor=[UIColor redColor];
 }
 //-----------------FXTabsr.m文件END--------------
 
-
-
-
-
 ```
+
+##版本新特性功能开发
+ >新建文件夹newFeature
+ >原理和轮播器类似
+ >
+
 
 
  
