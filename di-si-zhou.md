@@ -142,7 +142,7 @@ VC.view.backgroundColor=[UIColor redColor];
 - (void)viewDidLoad 
 {
  ...
-     //设置KVC
+     //设置KVC,自定义tabBar
     [self setValue:[[FXTabar alloc] init] forKey:@"tabBar"];
     
     //重新初始化(如果不初始化，KVC将FXTabar变成标签控制器管理的对象，报错)
