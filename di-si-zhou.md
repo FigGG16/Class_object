@@ -183,7 +183,97 @@ VC.view.backgroundColor=[UIColor redColor];
 ##版本新特性功能开发
  >新建文件夹newFeature
  >原理和轮播器类似
- >
+ 
+
+
+
+```objectivec
+
+#import "FXNewFeatureViewController.h"
+
+@interface FXNewFeatureViewController ()
+
+@property(nonatomic,strong)UIScrollView *scrollView;
+@property(nonatomic,strong)UIPageControl *pageControl;
+
+@end
+
+@implementation FXNewFeatureViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    UIScrollView *scroll=[[UIScrollView alloc] init];
+    
+    //图片数量
+    NSInteger imageCount=4;
+    //设置大小
+    scroll.frame=self.view.bounds;
+    
+    //循环添加image到滚动控制器
+    for(int i=0;i<imageCount;i++)
+    {
+        
+        UIImageView *imageV=[[UIImageView alloc] init];
+        
+        imageV.frame=CGRectMake(i*self.view.width, 0, self.view.width, self.view.height);
+        
+        NSString *imageName=[NSString stringWithFormat:@"new_feature_%d",i+1];
+        
+        imageV.image=[UIImage imageNamed:imageName];
+        [scroll addSubview:imageV];     
+    }
+    //设置滚动范围
+    scroll.contentSize=CGSizeMake(imageCount*self.view.width, self.view.height);
+    //开启分页
+    scroll.pagingEnabled=true;
+    
+    //去除水平线
+    scroll.showsHorizontalScrollIndicator=NO;
+    
+    //取消弹簧效果
+    scroll.bounces=NO;
+        [self.view addSubview:scroll];
+    
+    //实例UIPageControl
+    UIPageControl *pageControl=[[UIPageControl alloc] init];
+    
+    pageControl.frame=CGRectMake(150, 600, 100, 30);
+    //分页数量
+    pageControl.numberOfPages=imageCount;
+    //add pageContol to the view
+    [self.view addSubview:pageControl];
+    
+    //当前颜色
+    pageControl.currentPageIndicatorTintColor=[UIColor redColor];
+    
+    //其余颜色
+    pageControl.pageIndicatorTintColor=[UIColor blueColor];
+    //关闭交互
+    pageControl.userInteractionEnabled=NO;
+    
+    //强引用控制器
+    _scrollView=scroll;
+    _pageControl=pageControl;
+    
+    //make control begcame delagage!
+    scroll.delegate=self;
+}
+
+#pragma mark 实现代理方法
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    //根据偏移量计算
+    NSInteger page=(scrollView.contentOffset.x/_scrollView.width+0.5);
+    _pageControl.currentPage=page;
+
+}
+
+```
+ - 对最后一页进行处理
+ 
+
+
 
 
 
