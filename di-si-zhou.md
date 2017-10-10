@@ -314,7 +314,7 @@ VC.view.backgroundColor=[UIColor redColor];
    UIButton *shareBtn=[[UIButton alloc] init];
    shareBtn.frame=CGRectMake(100, 400, 200, 40);
    
-   //设置背景图
+   //设置图片
    [shareBtn setImage:[UIImage imageNamed:@"new_feature_share_false"] forState:UIControlStateNormal];
    
    [shareBtn setImage:[UIImage imageNamed:@"new_feature_share_true"] forState:UIControlStateSelected];
@@ -327,7 +327,22 @@ VC.view.backgroundColor=[UIColor redColor];
    [shareBtn addTarget:self action:@selector(changeState:) forControlEvents:UIControlEventTouchUpInside];
    //添加到image
    [imag addSubview:shareBtn];
+   
+   //实例控件
+   UIButton *startBtn=[[UIButton alloc] init];
+   startBtn.frame=CGRectMake(150, 500, 100, 40);
+   
+   //设置背景图
+   [startBtn setBackgroundImage:[UIImage imageNamed:@"new_feature_finish_button_highlighted"] forState:UIControlStateNormal];
+   [startBtn setBackgroundImage:[UIImage imageNamed:@"new_feature_finish_button_highlighted"] forState:UIControlStateHighlighted];
+   
+   //设置标题
+   [startBtn setTitle:@"开始微博" forState:UIControlStateNormal];
+   //标题颜色
+   [startBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+   
 
+   [imag addSubview:startBtn];
 
 }
 //-----------------FXNewFeatureViewController.m----end
