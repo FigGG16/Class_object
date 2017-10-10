@@ -280,7 +280,7 @@ VC.view.backgroundColor=[UIColor redColor];
  - 对最后一页进行处理
  
 
-![](/assets/Snip20171010_2.png)
+![](/assets/Snip20171010_3.png)
 
 
 
