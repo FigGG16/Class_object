@@ -269,7 +269,14 @@ VC.view.backgroundColor=[UIColor redColor];
 
 }
 
+
 ```
+
+控件不显示的原因
+![](/assets/Snip20171010_1.png)
+
+
+
  - 对最后一页进行处理
  
 
