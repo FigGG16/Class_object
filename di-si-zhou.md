@@ -273,6 +273,58 @@ VC.view.backgroundColor=[UIColor redColor];
  - 对最后一页进行处理
  
 
+![](/assets/Snip20171010_2.png)
+
+
+
+
+```objectivec
+...
+- (void)viewDidLoad {
+    for(int i=0;i<imageCount;i++)
+    {
+        ...
+               //对最后一页进行处理
+        if(i==3){
+           [self setUpLastImage:imageV];
+        }
+        ...
+  }
+  ...
+}
+
+
+-(void)changeState:(UIButton *)shareBtn{
+   //改变状态
+   shareBtn.selected=!shareBtn.isSelected;
+}
+
+-(void)setUpLastImage:(UIImageView*)imag
+{
+   //开启交互
+   imag.userInteractionEnabled=TRUE;
+   //实例控件
+   UIButton *shareBtn=[[UIButton alloc] init];
+   shareBtn.frame=CGRectMake(100, 400, 200, 40);
+   
+   //设置背景图
+   [shareBtn setImage:[UIImage imageNamed:@"new_feature_share_false"] forState:UIControlStateNormal];
+   
+   [shareBtn setImage:[UIImage imageNamed:@"new_feature_share_true"] forState:UIControlStateSelected];
+   
+   //设置标题
+   [shareBtn setTitle:@"分享微博" forState:UIControlStateNormal];
+   //标题颜色
+   [shareBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+   //监控点击
+   [shareBtn addTarget:self action:@selector(changeState:) forControlEvents:UIControlEventTouchUpInside];
+   //添加到image
+   [imag addSubview:shareBtn];
+
+
+}
+//-----------------FXNewFeatureViewController.m----end
+```
 
 
 
