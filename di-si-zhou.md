@@ -97,7 +97,94 @@
 ```
 
  - 使用代理的方式实现监听按钮的点击
+ 
  前提是使用addTarget的方式通知代理
+ 
+
+
+```objectivec
+
+
+....
+@class FXTabar;
+//声明协议
+@protocol FXTabBarDelegate <NSObject>
+
+- (void)clickPlusBtn:(FXTabar *)tabbar;
+
+@end
+
+....
+@property(nonatomic,weak)id<FXTabBarDelegate> delegate;
+....
+//-----------------FXTabsr.h文件END--------------
+
+
+
+...
+//遵守协议
+@interface FXTaBarController ()<FXTabBarDelegate>
+
+@end
+
+...
+
+//实现协议方法
+-(void)clickPlusBtn:(FXTabar *)tabbar
+{
+UIViewController *VC=[[UIViewController alloc] init];
+VC.view.backgroundColor=[UIColor redColor];
+// [self.navigationController pushViewController:VC animated:YES];
+[self presentViewController:VC animated:YES completion:nil];
+}
+
+
+- (void)viewDidLoad 
+{
+ ...
+     //设置KVC
+    [self setValue:[[FXTabar alloc] init] forKey:@"tabBar"];
+    
+    //重新初始化(如果不初始化，KVC将FXTabar变成标签控制器管理的对象，报错)
+    FXTabar *plusBtn=[[FXTabar alloc]init];
+    
+   //设置代理
+    plusBtn.delegate=self;
+ ...
+}
+
+//-----------------FXTaBarController.m-------end
+
+
+
+
+//添加监听点击事件
+-(instancetype)initWithFrame:(CGRect)frame
+{
+...
+    [plusBtn addTarget:self action:@selector(plusBtnClick) forControlEvents:UIControlEventTouchUpInside];
+...
+}
+
+...
+//响应button的点击
+-(void)plusBtnClick{
+    //判断代理方法是否实现
+   if([self.delegate respondsToSelector:@selector(clickPlusBtn:)])
+   {
+       //传递self
+       [self.delegate clickPlusBtn:self];
+   }
+}
+//-----------------FXTabsr.m文件END--------------
+
+
+
+
+
+```
+
+
  
  
 
