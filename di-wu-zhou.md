@@ -19,8 +19,9 @@
 
 
 
-
+在AppDelegate文件中判断
 ```objectivec
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 ...
     //获取当前程序的版本号
     NSString *lastBundleVersion=[[NSUserDefaults standardUserDefaults] objectForKey:@"CFBundleVersion"];
@@ -51,6 +52,8 @@
         //创建TabBarController，它是程序底部的标签页,是一个容器
         self.window.rootViewController=[[FXNewFeatureViewController alloc] init];
     }
+    
+}
 ...
 ```
 
