@@ -10,6 +10,16 @@
 ...
 }
 
+-(void)startBtnClick
+{
+   UIWindow *window=[UIApplication sharedApplication].keyWindow;
+   
+   window.rootViewController=[[FXTaBarController alloc] init];
+
+
+}
+
+
 ```
 
 ##解决新特性界面重复显示
