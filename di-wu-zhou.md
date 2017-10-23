@@ -78,7 +78,7 @@
 ![](/assets/Snip20171016_4.png)
 
 ##微博web请求注意点
-
+![](/assets/Snip20171023_1.png)
 
     
 
