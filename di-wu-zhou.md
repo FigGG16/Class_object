@@ -80,7 +80,62 @@
 ##微博web请求注意点
 ![](/assets/Snip20171023_1.png)
 
+请求页面代码
+
+
+```
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    //创建一个UIWebView对象
+    UIWebView *webView=[[UIWebView alloc]init];
+    //frame
+    webView.frame=self.view.bounds;
+    //把webView作为控制器view的子控件
+    [self.view addSubview:webView];
+    //urlStr
+    NSString *urlStr=@"https://api.weibo.com/oauth2/authorize?client_id=116051389&redirect_uri=http://";
+    //authorize?授权地址
+    //client不能为空
+    //redirect_uri 回调地址
     
+    //创建url
+    NSURL *url=[NSURL URLWithString:urlStr];
+    //创建请求对象
+    NSURLRequest *request=[NSURLRequest requestWithURL:url];
+    //发送请求
+    [webView loadRequest:request];
+    
+    webView.delegate=self;
+}
+
+```
+##使用代理的方式截取指令 获取access Token
+
+
+```
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSString *url = request.URL.absoluteString;
+    
+    //  截取code令牌
+    NSRange range=[url rangeOfString:@"code="];
+    
+    if(range.length!=0)
+    {
+       //已授权
+        NSInteger fromIndex = range.location+range.length;
+        
+        NSString *code = [url substringFromIndex:fromIndex];
+        
+        NSLog(@"XXX%@",code);
+    }
+
+
+    return YES;
+}
+
+```
+
 
 
 

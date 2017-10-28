@@ -6,4 +6,5 @@
 * [第三周](tem.md)
 * [第四周](di-si-zhou.md)
 * [第五周](di-wu-zhou.md)
+* [第六周](di-liu-zhou.md)
 
