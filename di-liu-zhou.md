@@ -2,13 +2,13 @@
 >处理流程
 ![](/assets/Snip20171028_1.png)
 封装文件切换window的分类
-```objectivec
-UIWindow+Extension.m
 
+```objectivec
+
+UIWindow+Extension.m
 #import "UIWindow+Extension.h"
 #import "FXTaBarController.h"
 #import "FXNewFeatureViewController.h"
-
 @implementation UIWindow (Extension)
 //切换窗口
 +(void)switchRootViewController
@@ -62,7 +62,8 @@ UIWindow+Extension.m
 
 
 
-```
+```objectivec
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 ...
     //判断沙盒是否存在账号
@@ -95,6 +96,7 @@ UIWindow+Extension.m
 
 
 ```objectivec
+
 @property(nonatomic,copy)NSString *access_token;
 @property(nonatomic,copy)NSString *expires_in;
 @property(nonatomic,copy)NSString *uid;
@@ -126,7 +128,9 @@ UIWindow+Extension.m
  >1.使用归档
  >2.过期处理
 
-```obejectiveC
+```objectivec
+
+
 @class FXAccount;
 //处理账号有关的所有操作(存，读取，验证账号是否过期)
 @interface FXAccountTool : NSObject
@@ -166,12 +170,32 @@ UIWindow+Extension.m
 //------------------FXAccountTool.m----end
 
 ```
-在FXAccount文件增加解档和归档类型
+在FXAccount文件增加解档和归档类型要遵守NSCoding协议
 
 
+```objectivec
 
-```
-
+//按照规定格式存
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.access_token forKey:@"access_token"];
+     [aCoder encodeObject:self.expires_in forKey:@"expires_in"];
+     [aCoder encodeObject:self.uid forKey:@"uid"];
+}
+//按照规定格式取
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self=[super init];
+    
+    if(self){
+       
+        self.access_token=[aDecoder decodeObjectForKey:@"access_token"];
+        self.expires_in=[aDecoder decodeObjectForKey:@"expires_in"];
+        self.expires_in=[aDecoder decodeObjectForKey:@"uid"];
+        
+    }
+    return self;
+}
 ```
 
 
