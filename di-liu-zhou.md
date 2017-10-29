@@ -1,17 +1,17 @@
 ##请求授权与AFNetworking框架的使用
 
 ![](/assets/Snip20171028_1.png)
-封装一个继承NSObject的文件切换window的工具类//也可以做成UIWindow扩展
+封装文件切换window的分类
 ```objetivec
-UIWindowTool.m
+UIWindow+Extension.m
 
+#import "UIWindow+Extension.h"
 #import "FXTaBarController.h"
 #import "FXNewFeatureViewController.h"
 
-@implementation UIWindowTool
-
+@implementation UIWindow (Extension)
 //切换窗口
-+(void)switchWindow
++(void)switchRootViewController
 {
     UIWindow *window=[UIApplication sharedApplication].keyWindow;    /////////////////////// ------判断新特性---------  //////////////////////
     //获取当前程序的版本号
@@ -41,13 +41,20 @@ UIWindowTool.m
     }
     
     /////////////////////// ------判断新特性---------end  ///
+    
+}
+
+@end
+    
+    /////////////////////// ------判断新特性---------end  ///
 
 }
-//---------------------UIWindowTool.m----end
+//---------------------UIWindow+Extension.m----end
 
 
 //切换窗口
- +(void)switchWindow;
+//切换窗口
++(void)switchRootViewController;
 //---------------------UIWindowTool.h----end
 ```
 在AppDelegate中
@@ -82,6 +89,11 @@ UIWindowTool.m
 ...
 ```
 
+
+
+
+
+##把取出沙盒部分代码做成功宏
 
 
 
