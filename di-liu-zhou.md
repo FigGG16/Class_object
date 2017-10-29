@@ -1,8 +1,8 @@
 ##请求授权与AFNetworking框架的使用
-
+>处理流程
 ![](/assets/Snip20171028_1.png)
 封装文件切换window的分类
-```objetivec
+```objectivec
 UIWindow+Extension.m
 
 #import "UIWindow+Extension.h"
@@ -89,15 +89,44 @@ UIWindow+Extension.m
 ...
 ```
 
-##面向模型开发
+##面向模型开发获取信息转为模型
 优点：提高开发效率，解决易错
 
 
-##新建处理账号有关的所有操作
+
+```objectivec
+@property(nonatomic,copy)NSString *access_token;
+@property(nonatomic,copy)NSString *expires_in;
+@property(nonatomic,copy)NSString *uid;
+@property(nonatomic,copy)NSDate *create_time;
+
++(instancetype)accountWithDict:(NSDictionary*)dict;
+//--------------_-------FXAccount.h------end
 
 
++(instancetype)accountWithDict:(NSDictionary*)dict
+{
+    FXAccount *account=[[self alloc] init];
+    
+    account.access_token=dict[@"access_token"];
+    account.expires_in=dict[@"expires_in"];
+    account.uid=dict[@"uid"];
+    
+    
+    return account;
+}
+//--------------_-------FXAccount.m------end
 
 ```
+
+
+
+
+##新建处理账号有关的所有操作
+ >1.使用归档
+ >2.过期处理
+
+```obejectiveC
 @class FXAccount;
 //处理账号有关的所有操作(存，读取，验证账号是否过期)
 @interface FXAccountTool : NSObject
@@ -136,8 +165,15 @@ UIWindow+Extension.m
 }
 //------------------FXAccountTool.m----end
 
+```
+在FXAccount文件增加解档和归档类型
+
+
 
 ```
+
+```
+
 
 
 
