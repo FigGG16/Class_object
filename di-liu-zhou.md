@@ -1,7 +1,7 @@
 ##请求授权与AFNetworking框架的使用
 
 ![](/assets/Snip20171028_1.png)
-封装一个继承NSObject的文件切换window的工具类
+封装一个继承NSObject的文件切换window的工具类//也可以做成UIWindow扩展
 ```objetivec
 UIWindowTool.m
 
