@@ -89,11 +89,58 @@ UIWindow+Extension.m
 ...
 ```
 
+##面向模型开发
+优点：提高开发效率，解决易错
+
+
+##新建处理账号有关的所有操作
 
 
 
+```
+@class FXAccount;
+//处理账号有关的所有操作(存，读取，验证账号是否过期)
+@interface FXAccountTool : NSObject
+//存放账号
++(void)saveAccount:(FXAccount *)account;
+//读取
++(FXAccount *)account;
 
-##把取出沙盒部分代码做成功宏
+//------------------------FXAccountTool.h----end
+
+
+//宏定义归档目录
+#define FXPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"HFX.archive"]
+
+@implementation FXAccountTool
+
+//存放账号(归档)
++(void)saveAccount:(FXAccount *)account
+{
+    
+    //获取沙盒路径 并把账号存入沙盒
+    //        NSString *homePath=NSHomeDirectory();
+
+    //归档 是按照一定的数据格式存放数据
+    [NSKeyedArchiver archiveRootObject:account toFile:FXPath];
+
+
+}
+//读取(解档)
++(FXAccount *)account
+{
+    NSLog(@"----->%@",FXPath);
+  FXAccount *account=  [NSKeyedUnarchiver unarchiveObjectWithFile:FXPath];
+  return account;
+    
+}
+//------------------FXAccountTool.m----end
+
+
+```
+
+
+
 
 
 
