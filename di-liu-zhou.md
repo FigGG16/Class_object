@@ -198,6 +198,54 @@ UIWindow+Extension.m
 }
 ```
 
+##请求用户信息
+
+- 第一步
+
+
+
+```objectivec
+
+//---------------FXHomeViewController.m--------
+/获取用户信息
+-(void)setUpUserInf
+{
+    //创建一个账号模型
+    FXAccount *account=[FXAccountTool account];
+    
+    //创建一个管理对象
+    AFHTTPRequestOperationManager *man=[AFHTTPRequestOperationManager manager];
+    //从模型中取出请求信息
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    //存到字典
+    params[@"access_token"]=account.access_token;
+    params[@"uid"]=account.uid;
+    
+    //发送get请求
+    [man GET:@"https://api.weibo.com/2/users/show.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"responseObject=%@",responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"请求失败");
+    }
+     
+     ];
+}
+
+
+- (void)viewDidLoad{
+
+*****
+    //调用
+    [self setUpUserInf];
+***
+
+}
+
+```
+
+
 
 
 
