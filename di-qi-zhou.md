@@ -3,8 +3,9 @@
 请求到的json数据数据格式如下
 
 >定义一个loadStatus方法用于请求微博数据
->定义两个模型嵌套
+>定义一个模型嵌套
 >TABLEVIEW显示
+>第三方框架加载图片
 ```obejctivec
 //获取微博
 -(void)loadStatus
@@ -49,5 +50,6 @@
     ];
 }
 ```
+
 
 
