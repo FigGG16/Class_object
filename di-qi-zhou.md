@@ -52,4 +52,123 @@
 ```
 
 
+##两个嵌套模型
+
+
+
+```objectivec
+
+@class FXUser;
+@interface FXStatus : NSObject
+
+@property(nonatomic,copy)NSString *idstr;
+
+
+@property(nonatomic,copy)NSString *text;
+//微博user属性
+@property(nonatomic,strong)FXUser *user;
+
++(instancetype)statusWithDict:(NSDictionary *)dict;
+
+----------------------------.h-----------
+
++(instancetype)statusWithDict:(NSDictionary *)dict
+{
+    FXStatus *status=[[self alloc ] init];
+    
+    status.idstr=dict[@"idstr"];
+    status.text=dict[@"text"];
+    
+    status.user = [FXUser userWithDict:dict[@"user"]];
+    return status;
+}
+----------------------------.m-------------
+//---------------------------------**Status **
+
+
+@interface FXUser : NSObject
+
+//idstr;
+//name
+//
+//profile_image_url
+@property(nonatomic,copy)NSString *idstr;
+
+@property(nonatomic,copy)NSString *name;
+
+@property(nonatomic,copy)NSString *profile_image_url;
+
++(instancetype)userWithDict:(NSDictionary *)dict;
+
+------------------.h------------------------------
++(instancetype)userWithDict:(NSDictionary *)dict
+{
+    FXUser *user=[[self alloc] init];
+    
+    user.name=dict[@"name"];
+    user.profile_image_url=dict[@"profile_image_url"];
+    user.idstr=dict[@"idstr"];
+    
+    return user;
+
+}
+--------------------.m-----------------------------------
+//---------------------------------**FXUser **
+
+
+
+
+
+
+
+```
+
+
+
+
+
+##设置tableView
+
+
+```objectivec
+
+
+#pragma --设置行数
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+    return self.status.count;
+
+}
+
+//设置单元格数据
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  static NSString *ID=@"cell";
+    
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:ID];
+    
+    if(cell == nil){
+    
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+    }
+    
+    FXStatus *status =self.status[indexPath.row];
+    FXUser *user=status.user;
+    //用户名
+    cell.textLabel.text=user.name;
+    //文本详情
+    cell.detailTextLabel.text=status.text;
+    //图片url地址
+    NSString *imageUrl=user.profile_image_url;
+    
+    //加载图片
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"avatar_default"]];
+    
+    return cell;
+}
+
+```
+
+
 
