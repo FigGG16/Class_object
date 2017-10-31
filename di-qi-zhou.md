@@ -1,7 +1,7 @@
 ##请求微博首页数据
 
 请求到的json数据数据格式如下
-
+![](/assets/Snip20171031_1.png)
 >定义一个loadStatus方法用于请求微博数据
 >定义一个模型嵌套
 >TABLEVIEW显示
