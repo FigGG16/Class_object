@@ -247,7 +247,32 @@ UIWindow+Extension.m
 ##从网络上获取名字并显示到标题
 
 
-```
+```objectivec
+-(void)setUpUserInf{
+***
+
+    [man GET:@"https://api.weibo.com/2/users/show.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        //获取名字
+        account.name=responseObject[@"name"];
+        
+        //gui归档
+        [FXAccountTool saveAccount:account];
+        
+        //获取titileView;
+        UIButton *titleBtn=(UIButton *)self.navigationItem.titleView;
+        
+        [titleBtn setTitle:account.name forState:UIControlStateNormal];
+        
+        
+      //  NSLog(@"responseObject=%@",responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"请求失败");
+    }
+     
+     ];
+
+}
 
 ```
 

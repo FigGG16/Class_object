@@ -7,4 +7,5 @@
 * [第四周](di-si-zhou.md)
 * [第五周](di-wu-zhou.md)
 * [第六周](di-liu-zhou.md)
+* [第七周](di-qi-zhou.md)
 
