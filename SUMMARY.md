@@ -8,4 +8,5 @@
 * [第五周](di-wu-zhou.md)
 * [第六周](di-liu-zhou.md)
 * [第七周](di-qi-zhou.md)
+* [第八周](di-ba-zhou.md)
 
