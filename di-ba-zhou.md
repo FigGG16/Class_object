@@ -96,7 +96,7 @@
         NSIndexSet *set= [NSIndexSet indexSetWithIndexesInRange:range];
         
         //在前方插入
-        [self.status insertObject:newStatus atIndex:set];
+       [self.status insertObjects:newStatus atIndexes:set];
         
     
         
@@ -113,6 +113,30 @@
 }
 
 ```
+以上插入最新数据之后一直重复，再添加如下代码
+
+
+
+```objectivec
+
+//下拉刷新的监听方法
+-(void)refershStatusChange
+{
+....
+    //加载最新微博(解决重复包含)
+    FXStatus *first   = [self.status firstObject];
+
+    if(first!=nil)
+    {
+          params[@"since_id"]=first.idstr;
+    }
+
+....
+
+}
+
+```
+
 
 
 
