@@ -140,13 +140,26 @@
 ```
 
 重复请求，以下方法进行合并
-删除
+删除loadStatus
 
 ```objectivec
     //获取微博
 //    [self loadStatus];
     //下拉刷新
     [self setUpRefershStatus];
+```
+
+在setUpRefershStatus方法添加
+
+
+```objectivec
+//下拉刷新方法
+-(void)setUpRefershStatus
+{
+...
+    //程序一启动就进行刷新
+    [self refershStatusChange:control];
+}
 ```
 
 
