@@ -258,6 +258,20 @@
 ![](/assets/Snip20171107_1.png)
 
 
+增加一个定时器每隔一段时间调用读取方法
+
+
+```
+- (void)viewDidLoad {
+    [super viewDidLoad];
+  ...
+      //设置一个定时器 每隔一段时间向新浪服务器请求未读的微博数
+    [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(setUnreadCount) userInfo:nil repeats:YES];
+}
+//---------------FXHomeViewController.m
+
+```
+
 
 
 
