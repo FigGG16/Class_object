@@ -214,6 +214,44 @@
 }
 
 ```
+##上拉刷新
+思路：
+>新建继承文件UIView文件，并关联xib
+>赋值给tableView的tableFooteView,上拉时会显示
+>更新数据时与下拉刷新相同，只需改一下数据向数组后插入，取出时也取出数组最后的数据
+
+
+
+```objectivec
+//产生一个xib对象
++(instancetype)footer;
+//-------FXLoadFooter.h------->
+
++(instancetype)footer
+{
+    return [[NSBundle mainBundle] loadNibNamed:@"FXLoadFooter" owner:nil options:nil].lastObject;
+
+}
+//-------FXLoadFooter.m------->
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad]
+    ...
+        //上拉刷新
+    [self setUpFooter];
+    }
+
+-(void)setUpFooter
+{
+    FXLoadFooter *foot=[FXLoadFooter footer]; 
+    self.tableView.tableFooterView=foot;
+}
+//-----------FXHomeViewController.m-------
+
+```
+
+
 
 
 
