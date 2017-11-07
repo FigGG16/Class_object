@@ -162,6 +162,60 @@
 }
 ```
 
+##显示更新数据
+
+
+```objectivec
+//显示更新数据
+-(void)setUpNewStatusCount:(NSInteger)count{
+    UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 50)];
+    
+    label.backgroundColor=[UIColor redColor];
+    
+    if(count)
+    {
+//        NSLog(@"更新了%ld条数据",newStatus.count);
+        NSString *str=[NSString stringWithFormat:@"更新了%ld条微博数据",count];
+        label.text=str;
+    }
+    else
+    {
+        label.text=@"没有最新数据";
+    }
+    //在....控件的下方插入数据
+    [self.navigationController.view insertSubview:label belowSubview:self.navigationController.navigationBar];
+   //添加动画
+    
+    CGFloat dura=1.0;
+    [UIView animateWithDuration:dura animations:^{
+        //执行动画的操作
+        label.y+=50;
+        
+    } completion:^(BOOL finished) {
+        
+        CGFloat delay =1.0;
+        
+        //完成操作后进入该代码块,options: 匀速运动
+        [UIView animateWithDuration:dura delay:delay options:UIViewAnimationOptionCurveLinear animations:^{
+           
+            label.y-=50;
+        } completion:^(BOOL finished) {
+            
+            //从内存中 清除
+            [label removeFromSuperview];
+            
+        }];
+        
+    }];
+}
+
+```
+
+
+
+
+
+
 
 
 
