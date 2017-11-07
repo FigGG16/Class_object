@@ -6,7 +6,8 @@
 >定义一个模型嵌套
 >TABLEVIEW显示
 >第三方框架加载图片
-```obejctivec
+```objectivec
+
 //获取微博
 -(void)loadStatus
 {
