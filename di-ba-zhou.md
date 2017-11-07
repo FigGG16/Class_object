@@ -241,7 +241,7 @@
         //上拉刷新
     [self setUpFooter];
     }
-
+//上拉刷新的实现方法
 -(void)setUpFooter
 {
     FXLoadFooter *foot=[FXLoadFooter footer]; 
