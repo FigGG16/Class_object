@@ -267,6 +267,10 @@
   ...
       //设置一个定时器 每隔一段时间向新浪服务器请求未读的微博数
     [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(setUnreadCount) userInfo:nil repeats:YES];
+    
+       //让主线程分出一点时间处理定时器
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+   
 }
 //---------------FXHomeViewController.m
 
