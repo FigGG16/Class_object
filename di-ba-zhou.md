@@ -170,7 +170,11 @@
 -(void)setUpNewStatusCount:(NSInteger)count{
     UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.width, 50)];
     
-    label.backgroundColor=[UIColor redColor];
+        //文本居中
+    label.textAlignment=NSTextAlignmentCenter;
+    //根据图片设置背景色
+    label.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"timeline_new_status_background"]];
+      
     
     if(count)
     {
