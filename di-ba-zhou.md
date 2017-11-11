@@ -261,7 +261,7 @@
 增加一个定时器每隔一段时间调用读取方法
 
 
-```
+```objectivec
 - (void)viewDidLoad {
     [super viewDidLoad];
   ...
@@ -273,6 +273,87 @@
    
 }
 //---------------FXHomeViewController.m
+
+
+-(void)setUnreadCount
+{
+    //创建一个账号模型
+    FXAccount *account=[FXAccountTool account];
+    
+    //创建一个管理对象
+    AFHTTPRequestOperationManager *man=[AFHTTPRequestOperationManager manager];
+    //从模型中取出请求信息
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    
+    //存到字典
+    params[@"access_token"]=account.access_token;
+    params[@"uid"]=account.uid;
+//发送get请求
+    [man GET:@"https://rm.api.weibo.com/2/remind/unread_count.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"--->%@",responseObject);
+        
+        
+        
+        //赋值未读数
+        NSString *status=[responseObject[@"status"] description];
+        
+        if([status isEqualToString:@"0"])
+        {
+            self.tabBarItem.badgeValue=nil;
+        }else
+        {
+            self.tabBarItem.badgeValue=status;
+        }
+        
+        
+//        self.tabBarItem.badgeValue= [responseObject[@"status"] stringValue];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"请求失败%@",error);
+    }];
+    
+}
+
+
+-(void)setUnreadCount
+{
+    //创建一个账号模型
+    FXAccount *account=[FXAccountTool account];
+    
+    //创建一个管理对象
+    AFHTTPRequestOperationManager *man=[AFHTTPRequestOperationManager manager];
+    //从模型中取出请求信息
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    
+    //存到字典
+    params[@"access_token"]=account.access_token;
+    params[@"uid"]=account.uid;
+//发送get请求
+    [man GET:@"https://rm.api.weibo.com/2/remind/unread_count.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"--->%@",responseObject);
+        
+        
+        
+        //赋值未读数
+        NSString *status=[responseObject[@"status"] description];
+        
+        if([status isEqualToString:@"0"])
+        {
+            self.tabBarItem.badgeValue=nil;
+        }else
+        {
+            self.tabBarItem.badgeValue=status;
+        }
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"请求失败%@",error);
+    }];
+    
+}
+
 
 ```
 
