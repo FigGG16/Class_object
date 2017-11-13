@@ -53,9 +53,103 @@
 ```
 
 
-
 创建步骤:
 ![](/assets/Snip20171113_2.png)
 
- - 进行拦截UITableViewCellStyleSubtitle方法
+ - 进行拦截UITableViewCellStyleSubtitle方法并实例化控件
+ 
+```objectivec
+
+、-(instancetype) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self =[super initWithStyle:style reuseIdentifier:reuseIdentifier];
+   
+    if(self){
+    //原创微博的整体
+       _originalView=[[UIView alloc] init];
+       [self.contentView addSubview:_originalView];
+                      
+        //头像   //添加以下控件到原创微博整体上
+       _icon=[[UIImageView alloc] init];
+        [_originalView addSubview:_icon];
+                             
+        //用户昵称
+       _nameLabel=[[UILabel alloc] init];
+        [_originalView addSubview:_nameLabel];
+                             
+        //时间
+       _timeLabel=[[UILabel alloc] init];
+        [_originalView addSubview:_timeLabel];
+        
+        //数据来源
+       _sourceLabel=[[UILabel alloc] init];
+        [_originalView addSubview:_sourceLabel];
+        
+        //内容
+       _contentLabel=[[UILabel alloc] init];
+        [_originalView addSubview:_contentLabel];
+        
+        //vip
+       _vipView=[[UIImageView alloc] init];
+        [_originalView addSubview:_vipView];
+    
+    }
+}   
+ 
+```
+
+ - 在model新建一个继承NSObject的文件存储cell控件的位置信息
+ 
+```objectivec
+
+//微博数据
+@property(nonatomic,strong)FXStatus *status;
+//原创微博的整体
+@property(nonatomic,assign)CGRect originalViewF;
+//头像
+@property(nonatomic,assign)CGRect iconF;
+//用户昵称
+@property(nonatomic,assign)CGRect nameLabelF;
+//时间
+@property(nonatomic,assign)CGRect timeLabelF;
+//数据来源
+@property(nonatomic,assign)CGRect sourceLabelF;
+//内容
+@property(nonatomic,assign)CGRect contentLabelF;
+//vip
+@property(nonatomic,assign)CGRect vipView;
+//单元格的高度
+@property(nonatomic,assign)CGFloat cellHeight;
+//----------------------------------------FXStatusFrame.h---------------
+
+
+//重写status的set方法，接收微博数据 根据微博
+-(void)setStatus:(FXStatus *)status
+{
+
+}
+//----------------------------------------FXStatusFrame.m---------------
+
+
+
+
+//----------------------------------------FXTableViewCell.h---------------\\
+//添加： 设置frame模型
+@property(nonatomic,strong)FXStatusFrame *statusframe;
+
+
+//重写frame 的set方法 给每个控件设置frame
+//----------------------------------------FXTableViewCell.m---------------
+//重写frame 的set方法 给每个控件设置frame
+-(void)setStatusframe:(FXStatusFrame *)statusframe
+{
+    _statusframe=statusframe;
+    
+    
+}
+
+
+```
+
+
  
