@@ -148,7 +148,7 @@
 }
 ```
 因为已经有了各个控件的frame信息，
-在FXHomeViewController.h文件新定义升级版的模型
+在FXHomeViewController.h文件修改并新定义升级版的模型
 
 ```objectivec
 @property(nonatomic,strong)NSMutableArray *statusesFrame;
