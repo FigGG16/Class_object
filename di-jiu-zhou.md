@@ -154,8 +154,7 @@
 @property(nonatomic,strong)NSMutableArray *statusesFrame;
 ```
 
- - 在微博的下拉刷新的方法中部分修改
-
+在微博的下拉刷新的方法中部分修改和所有报错的地方做相应的更改
 
 ```objectivec
 ...
