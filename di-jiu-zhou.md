@@ -145,11 +145,40 @@
 {
     _statusframe=statusframe;
     
-    
 }
-
-
 ```
+因为已经有了各个控件的frame信息，
+在FXHomeViewController.h文件新定义升级版的模型
+
+```objectivec
+@property(nonatomic,strong)NSMutableArray *statusesFrame;
+```
+
+ - 在微博的下拉刷新的方法中部分修改
+
+
+```objectivec
+...
+  //将微博模型转化为frame模型
+        NSMutableArray *frames=[NSMutableArray array];
+        for(FXStatus *status in newStatus){
+            
+            //frame模型
+            FXStatusFrame *f=[[FXStatusFrame alloc] init];
+            
+            //把微博模型转化为frame模型
+            f.status = status;
+            
+            [frames addObject:f];
+        }
+        self.statusesFrame=frames;
+...
+            //在前方插入
+        [self.statusesFrame insertObjects:frames atIndexes:set];
+...      
+```
+
+
 
 
  
