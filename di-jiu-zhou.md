@@ -151,6 +151,7 @@
 在FXHomeViewController.h文件修改并新定义升级版的模型
 
 ```objectivec
+//@property(nonatomic,strong)NSMutableArray *status;
 @property(nonatomic,strong)NSMutableArray *statusesFrame;
 ```
 
