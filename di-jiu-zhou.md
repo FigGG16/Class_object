@@ -179,6 +179,42 @@
 ```
 
 
+##计算文本的高度方法
+
+
+```objectivec
+-(CGSize)sizeWithText:(NSString *)text Font:(UIFont *)font maxW:(CGFloat)maxW
+{
+    //带属性的字符串
+    NSMutableDictionary *atts =[NSMutableDictionary dictionary];
+    atts[NSFontAttributeName] = font;
+    
+    //计算时不会超过 maxW height  MAXFLOAT表示计算文本高度 不做任何要求
+    CGSize MaxSize= CGSizeMake(maxW, MAXFLOAT);
+    return [text boundingRectWithSize:MaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:atts context:nil].size;
+}
+-(CGSize)sizeWithText:(NSString *)text Font:(UIFont *)font{
+
+    return [self sizeWithText:text Font:font maxW:MAXFLOAT];
+}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  
